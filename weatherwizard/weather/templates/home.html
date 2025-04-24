@@ -1,0 +1,25 @@
+
+
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>🌤 WeatherWizard</h1>
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="city" placeholder="Enter city" required>
+    <button type="submit">Check Weather</button>
+</form>
+
+{% if weather %}
+    <h2>Weather in {{ weather.city }}, {{ weather.country }}</h2>
+    <ul>
+        <li>🌡️ Temperature: {{ weather.temperature }} °C</li>
+        <li>☁️ Condition: {{ weather.description }}</li>
+        <li>💧 Humidity: {{ weather.humidity }}%</li>
+        <li>💨 Wind: {{ weather.wind }} m/s</li>
+    </ul>
+{% endif %}
+
+{% endblock content %}
